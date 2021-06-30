@@ -1,0 +1,16 @@
+n= int(input())
+array=[]
+for i in range(n):
+    array.append(int(input()))
+
+for i in range(n):
+    min=10000
+    for j in range(i,n):
+        if min>array[j]:
+            min=array[j]
+            index=j
+    
+    array[i],array[index]=array[index],array[i]
+
+for i in array:
+    print(i)
