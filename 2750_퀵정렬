@@ -1,0 +1,20 @@
+def QuickSort(array):
+    if len(array)<=1:
+        return array
+    
+    pivot = array[0]
+
+    i=[num for num in array[1:] if pivot>num]
+    j=[num for num in array[1:] if pivot<num]
+
+    return QuickSort(i)+[pivot]+QuickSort(j)
+
+n= int(input())
+array=[]
+for i in range(n):
+    array.append(int(input()))
+
+result= QuickSort(array)
+
+for i in result:
+    print(i)
