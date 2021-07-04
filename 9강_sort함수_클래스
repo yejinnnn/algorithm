@@ -1,0 +1,17 @@
+#점수 기준 오름차순하기
+
+class Student:
+    def __init__(self, name,score):
+        self.name=name
+        self.score=score
+
+students=[
+    Student("송지영",98),
+    Student("박예은",99),
+    Student("김예진",100)
+]
+
+students=sorted(students,key=lambda student: student.score,reverse=True)
+
+for student in students:
+    print(student.name, student.score)
