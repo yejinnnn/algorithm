@@ -1,0 +1,14 @@
+n=int(input())
+arr=[]
+for i in range(n):
+    arr.append(input())
+
+arr_set=list(set(arr))
+
+arr_set.sort()
+arr_set.sort(key=len)
+
+for i in arr_set:
+    print(i)
+
+    
