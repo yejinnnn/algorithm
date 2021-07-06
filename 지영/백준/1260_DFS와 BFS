@@ -1,0 +1,61 @@
+import sys
+n,m,v=map(int,sys.stdin.readline().split())
+
+#dic선언
+graph={}
+for i in range(m):
+    n1,n2= map(int,sys.stdin.readline().split())
+    #입력된 key값이 graph에 없으면 딕셔너리에 값추가
+    if n1 not in graph:
+        graph[n1]=[n2]
+    #입력된 value값이 key의 값에 없으면 추가
+    elif n2 not in graph[n1]:
+        graph[n1].append(n2)
+    
+    #양방향이므로 똑같이 해줌
+    if n2 not in graph:
+        graph[n2]=[n1]
+    elif n1 not in graph[n2]:
+        graph[n2].append(n1)
+
+def dfs(g,start_node):
+    visit=[]
+    stack=[]
+    stack.append(start_node)
+
+    while stack:
+        node=stack.pop()
+        #입력된 노드가 그래프에 없을 때 예외처리
+        if not node in graph:
+            visit.append(node)
+        if node not in visit:
+            visit.append(node)
+            stack.extend(g[node])
+    return visit
+
+def bfs(g,start_node):
+    visit=[]
+    que=[]
+    que.append(start_node)
+
+    while que:
+        node=que.pop(0)
+        #입력된 노드가 그래프에 없을 때 예외처리
+        if node not in graph:
+            visit.append(node)
+        if node not in visit:
+            visit.append(node)
+            que.extend(g[node])
+    return visit
+
+for key in graph:
+    #dfs는 전위우선 탐색위해 reverse해줌
+    graph[key].sort(reverse=True)
+for item in dfs(graph,v):
+    print(item, end=' ')
+print()
+
+for key in graph:
+    graph[key].sort()
+for item in bfs(graph,v):
+    print(item,end=' ')
