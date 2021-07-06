@@ -1,0 +1,34 @@
+class Queue:
+    def __init__(self):
+        self.queue=[]
+    def __len__(self):
+        return len(self.queue)
+    def push(self,data):
+        self.queue.append(data)
+    def pop(self):
+        if len(self.queue)<=0:
+            return ("제거할 데이터가 없습니다")
+            exit()
+        else:
+            return self.queue.pop(0)
+    def peek(self):
+        if len(self.queue)<=0:
+            return ("반환할 데이터가 없습니다")
+            exit()
+        else:
+            return self.queue[0]
+
+que=Queue()
+que.push(7)
+que.push(5)
+que.push(4)
+que.pop()
+que.push(6)
+que.pop()
+
+while len(que)!=0:
+    print(que.peek(),end=' ')
+    que.pop()
+
+    
+    
