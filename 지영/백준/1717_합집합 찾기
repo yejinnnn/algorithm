@@ -1,0 +1,39 @@
+import sys
+
+#Python으로 풀 경우 재귀 깊이 제한을 풀어줘야 한다. 그렇지 않으면 런타임 에러가 발생
+#n의 크기가 최대 백만이니 recursion limit을 1000000으로 설정하여 해결했다.
+#Python은 기본 세팅된 재귀 깊이가 작은 편이니 재귀를 사용하는 문제는 이 점을 늘 유의!
+sys.setrecursionlimit(1000000)
+
+n,m= map(int,sys.stdin.readline().split())
+parent=[0]*(n+1)
+for i in range(n+1):
+    parent[i]=i
+
+def getParent(x):
+    if parent[x] == x:
+        return x
+    else:
+        parent[x]=getParent(parent[x])
+        return getParent(parent[x])
+
+def unionParent(a, b):
+    a=getParent(a)
+    b=getParent(b)
+    if a!=b:
+        parent[a]=b
+
+def findParent(a, b):
+    a=getParent(a)
+    b=getParent(b)
+    if a==b:
+        return print("YES")
+    else:
+        return print("NO")
+
+for i in range(m):
+    cmd, a, b = map(int, sys.stdin.readline().split())
+    if cmd==0:
+        unionParent(a,b)
+    elif cmd==1:
+        findParent(a,b)
